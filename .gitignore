@@ -1,0 +1,4 @@
+.idea/*
+webapp/bin/*
+webapp/obj/*
+/TestApp.sln.DotSettings.user
