@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webapp", "webapp\webapp.csproj", "{35EB055E-5945-4173-AF58-52B1B7C00909}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Api", "WebApp.Api\WebApp.Api.csproj", "{35EB055E-5945-4173-AF58-52B1B7C00909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
