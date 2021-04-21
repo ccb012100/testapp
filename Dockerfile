@@ -1,15 +1,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+# /app is created if it doesn't exist
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-COPY *.csproj ./
+COPY . ./
 RUN dotnet restore
 
-# COPY line is necessary to prevent publish failing with error
-# "Program does not contain a static 'Main' method suitable for an entry point"
-COPY . .
-RUN dotnet publish -c Debug -o out
+COPY . ./
+RUN dotnet publish WebApp.Api -c Debug -o out
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
