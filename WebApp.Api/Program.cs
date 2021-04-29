@@ -1,11 +1,11 @@
 using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 
-namespace WebApp
+namespace WebApp.Api
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     public class Program
