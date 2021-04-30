@@ -10,6 +10,7 @@ namespace WebApp.Api.Extensions
 {
     public static class AppBuilderExtensions
     {
+        // ReSharper disable once UnusedMethodReturnValue.Global
         public static IApplicationBuilder ConfigureEndpoints(this IApplicationBuilder app, IWebHostEnvironment env,
             IConfiguration config)
         {

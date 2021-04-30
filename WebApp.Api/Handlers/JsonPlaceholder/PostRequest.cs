@@ -1,7 +1,7 @@
 using MediatR;
-using WebApp.Api.Models;
+using WebApp.Api.Models.JsonPlaceholder;
 
-namespace WebApp.Api.Handlers.Requests
+namespace WebApp.Api.Handlers.JsonPlaceholder
 {
     public record PostRequest : IRequest<Post>
     {

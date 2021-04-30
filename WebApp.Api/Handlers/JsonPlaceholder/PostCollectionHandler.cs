@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using WebApp.Api.Handlers.Requests;
 using WebApp.Api.HttpClients;
-using WebApp.Api.Models;
+using WebApp.Api.Models.JsonPlaceholder;
 
-namespace WebApp.Api.Handlers
+namespace WebApp.Api.Handlers.JsonPlaceholder
 {
     // ReSharper disable once UnusedType.Global
     public class PostCollectionHandler : IRequestHandler<PostCollectionRequest, IEnumerable<Post>>

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Refit;
-using WebApp.Api.Models;
+using WebApp.Api.Models.JsonPlaceholder;
 
 namespace WebApp.Api.HttpClients
 {

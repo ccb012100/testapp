@@ -6,15 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Refit;
 using WebApp.Api.Extensions;
-using WebApp.Api.HttpClients;
-using WebApp.Api.Options;
 
 // ReSharper disable TemplateIsNotCompileTimeConstantProblem
-
 namespace WebApp.Api
 {
     public class Startup
@@ -32,21 +27,12 @@ namespace WebApp.Api
         // ReSharper disable once CA1822
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOptions<JsonPlaceholderApiOptions>()
-                .Bind(Configuration.GetSection(JsonPlaceholderApiOptions.JsonPlaceholderApi))
-                .ValidateDataAnnotations();
-
-            services.AddMediatR(Assembly.GetExecutingAssembly()).AddSwaggerGen(c =>
-                {
-                    c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApp", Version = "v1"});
-                })
+            services
+                .AddAppSettingsOptions(Configuration)
+                .AddMediatR(Assembly.GetExecutingAssembly())
+                .AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApp", Version = "v1"}); })
+                .AddHttpClients()
                 .AddControllers();
-
-            services.AddRefitClient<IJsonPlaceholderApi>()
-                .ConfigureHttpClient((svc, client) =>
-                {
-                    client.BaseAddress = svc.GetService<IOptions<JsonPlaceholderApiOptions>>()?.Value.BaseAddress;
-                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
