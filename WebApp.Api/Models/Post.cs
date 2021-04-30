@@ -1,5 +1,5 @@
 // ReSharper disable UnusedMember.Global
-namespace WebApp.Api
+namespace WebApp.Api.Models
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     public record Post

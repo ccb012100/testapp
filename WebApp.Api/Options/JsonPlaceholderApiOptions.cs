@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
-namespace WebApp.Api
+namespace WebApp.Api.Options
 {
     public class JsonPlaceholderApiOptions
     {

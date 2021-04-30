@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Refit;
+using WebApp.Api.Models;
 
-namespace WebApp.Api
+namespace WebApp.Api.HttpClients
 {
     public interface IJsonPlaceholderApi
     {

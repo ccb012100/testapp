@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace WebApp.Api
+namespace WebApp.Api.Extensions
 {
     public static class AppBuilderExtensions
     {
