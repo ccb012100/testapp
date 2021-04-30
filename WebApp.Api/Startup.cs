@@ -1,16 +1,16 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Refit;
 
 // ReSharper disable TemplateIsNotCompileTimeConstantProblem
 
-namespace WebApp
+namespace WebApp.Api
 {
     public class Startup
     {
@@ -27,8 +27,18 @@ namespace WebApp
         // ReSharper disable once CA1822
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions<JsonPlaceholderApiOptions>()
+                .Bind(Configuration.GetSection(JsonPlaceholderApiOptions.JsonPlaceholderApi))
+                .ValidateDataAnnotations();
+
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApp", Version = "v1"}); })
                 .AddControllers();
+
+            services.AddRefitClient<IJsonPlaceholderApi>()
+                .ConfigureHttpClient((svc, client) =>
+                {
+                    client.BaseAddress = svc.GetService<IOptions<JsonPlaceholderApiOptions>>()?.Value.BaseAddress;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,27 +55,7 @@ namespace WebApp
 
             // The default HSTS value is 30 days.
             // You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts().UseHttpsRedirection().UseRouting().UseAuthorization()
-                .UseEndpoints(endpoints =>
-                {
-                    if (env.IsDevelopment())
-                    {
-                        // view app settings at ~/debug
-                        endpoints.MapGet("/debug",
-                            async context =>
-                            {
-                                string config = (Configuration as IConfigurationRoot).GetDebugView();
-                                await context.Response.WriteAsync(config);
-                            });
-                        endpoints.MapGet("/",
-                            async context =>
-                            {
-                                await context.Response.WriteAsync($"{GetType().Namespace} - {DateTime.Now}");
-                            });
-                    }
-
-                    endpoints.MapControllers();
-                });
+            app.UseHsts().UseHttpsRedirection().UseRouting().UseAuthorization().ConfigureEndpoints(env, Configuration);
 
             ILogger<Startup> logger = loggerFactory.CreateLogger<Startup>();
             appLifetime.ApplicationStarted.Register(() => OnStarted(logger));
