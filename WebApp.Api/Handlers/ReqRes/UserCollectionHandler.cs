@@ -25,7 +25,6 @@ namespace WebApp.Api.Handlers.ReqRes
             CancellationToken cancellationToken)
         {
             CollectionResponse<User> response = await _api.GetUsers(request.Page);
-            _logger.LogInformation($"Got users page=`{request.Page}`:{Environment.NewLine}{response.ToPrettyPrintJson()}");
             return response;
         }
     }

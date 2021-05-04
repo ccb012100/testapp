@@ -24,7 +24,6 @@ namespace WebApp.Api.Handlers.ReqRes
         public async Task<SingleItemResponse<User>> Handle(UserRequest request, CancellationToken cancellationToken)
         {
             SingleItemResponse<User> response = await _api.GetUser(request.Id);
-            _logger.LogInformation($"Got user id=`{request.Id}`:{Environment.NewLine}{response.ToPrettyPrintJson()}");
             return response;
         }
     }

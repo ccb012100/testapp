@@ -14,9 +14,12 @@ namespace WebApp.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IWebHostEnvironment _environment;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            _environment = environment;
         }
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
@@ -30,9 +33,14 @@ namespace WebApp.Api
             services
                 .AddAppSettingsOptions(Configuration)
                 .AddMediatR(Assembly.GetExecutingAssembly())
-                .AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApp", Version = "v1"}); })
                 .AddHttpClients()
+                .AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApp", Version = "v1"}); })
                 .AddControllers();
+
+            if (_environment.IsDevelopment())
+            {
+                services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
