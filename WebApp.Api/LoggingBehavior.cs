@@ -19,9 +19,9 @@ namespace WebApp.Api
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
             RequestHandlerDelegate<TResponse> next)
         {
-            _logger.LogInformation($"REQUEST:{Environment.NewLine}{request.ToPrettyPrintJson()}");
+            _logger.LogDebug($"REQUEST:{Environment.NewLine}{request.ToPrettyPrintJson()}");
             TResponse response = await next();
-            _logger.LogInformation($"RESPONSE:{Environment.NewLine}{response.ToPrettyPrintJson()}");
+            _logger.LogDebug($"RESPONSE:{Environment.NewLine}{response.ToPrettyPrintJson()}");
 
             return response;
         }
