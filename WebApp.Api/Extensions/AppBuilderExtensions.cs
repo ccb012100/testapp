@@ -1,5 +1,3 @@
-using System;
-using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,12 +22,6 @@ namespace WebApp.Api.Extensions
                         {
                             string configRoot = (config as IConfigurationRoot).GetDebugView();
                             await context.Response.WriteAsync(configRoot);
-                        });
-                    endpoints.MapGet("/",
-                        async context =>
-                        {
-                            await context.Response.WriteAsync(
-                                $"{Assembly.GetExecutingAssembly().Location}\n\n{DateTime.Now}");
                         });
                 }
 

@@ -45,7 +45,12 @@ namespace WebApp.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage()
-                    .UseSwagger().UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Playlister v1"));
+                    .UseSwagger()
+                    .UseSwaggerUI(c =>
+                    {
+                        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Playlister v1");
+                        c.RoutePrefix = string.Empty; // serve on ~/
+                    });
             }
 
             // The default HSTS value is 30 days.

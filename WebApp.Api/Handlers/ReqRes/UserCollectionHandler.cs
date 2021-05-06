@@ -1,9 +1,7 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using WebApp.Api.Extensions;
 using WebApp.Api.HttpClients;
 using WebApp.Api.Models.ReqRes;
 
