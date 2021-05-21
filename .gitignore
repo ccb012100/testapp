@@ -1,4 +1,3 @@
 .idea/*
-WebApp.Api/bin/*
-WebApp.Api/obj/*
-/TestApp.sln.DotSettings.user
+/bin/
+/obj/
