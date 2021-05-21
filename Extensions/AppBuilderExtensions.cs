@@ -1,7 +1,9 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace WebApp.Extensions
@@ -12,7 +14,13 @@ namespace WebApp.Extensions
         public static IApplicationBuilder ConfigureEndpoints(this IApplicationBuilder app, IWebHostEnvironment env,
             IConfiguration config)
         {
-            return app.UseStaticFiles()
+            return app
+                .UseStaticFiles(new StaticFileOptions
+                {
+                    // host Pages/* at ~/app/*
+                    FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Pages")),
+                    RequestPath = "/app"
+                })
                 .UseEndpoints(endpoints =>
                 {
                     if (env.IsDevelopment())
