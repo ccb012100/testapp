@@ -1,44 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags for Bootstrap-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!-- Bootswatch Darkly Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.1/dist/darkly/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.1/dist/darkly/bootstrap.min.css" rel="stylesheet"/>
+
     <!-- Vue.js -->
     <!-- development version, includes helpful console warnings -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <!-- production version, optimized for size and speed -->
-    <!--<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>-->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
     <title>WebApp home</title>
 </head>
 <body class="container">
 <h1>Hello, world!</h1>
 <div id="app">
-    {{ message }}
     <ol>
-        <li v-for="item in arr">
-            {{ item.text }}
-        </li>
+        <list-item
+                v-for="item in arr"
+                v-bind:i="item"
+                v-bind:key="item.id"
+        ></list-item>
     </ol>
+    <div class="card w-50 text-center">
+        <div class="card-body">
+            <p>
+                <button v-on:click="showTime" type="button" class="btn btn-primary">Show Time</button>
+            </p>
+            <pre>{{ message }}</pre>
+        </div>
+    </div>
 </div>
 </body>
 <script>
-    let app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Loaded at ' + new Date().toLocaleString(),
-            arr: [
-                {text: 'Bloop'},
-                {text: 'Zorp'},
-                {text: 'Glorp'}
-            ]
-        }
+    const ArrList = {
+        data() {
+            return {
+                message: 'Loaded at ' + new Date().toLocaleString(),
+                arr: [
+                    {id: 0, text: 'Bloop'},
+                    {id: 1, text: 'Zorp'},
+                    {id: 2, text: 'Glorp'}],
+            };
+        },
+        methods: {
+            showTime() {
+                this.message = new Date().toLocaleString();
+            },
+        },
+    };
+
+    const app = Vue.createApp(ArrList);
+
+    app.component('list-item', {
+        props: ['i'],
+        template: `
+          <li>{{ i.text }}</li>`,
     });
+
+    app.mount('#app');
 </script>
 </html>
