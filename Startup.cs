@@ -1,9 +1,11 @@
+using System.IO;
 using System.Reflection;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
@@ -54,7 +56,17 @@ namespace WebApp
 
             // The default HSTS value is 30 days.
             // You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts().UseHttpsRedirection().UseRouting().UseAuthorization().ConfigureEndpoints(env, Configuration);
+            app.UseHsts()
+                .UseHttpsRedirection()
+                .UseRouting()
+                .UseAuthorization()
+                .UseStaticFiles(new StaticFileOptions
+                {
+                    // host Pages/* at ~/app/*
+                    FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Pages")),
+                    RequestPath = "/app"
+                })
+                .ConfigureEndpoints(env, Configuration);
 
             ILogger<Startup> logger = loggerFactory.CreateLogger<Startup>();
             appLifetime.ApplicationStarted.Register(() => OnStarted(logger));
