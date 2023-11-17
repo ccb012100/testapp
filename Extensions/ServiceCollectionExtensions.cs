@@ -34,8 +34,8 @@ namespace WebApp.Extensions
                 });
 
             services.AddRefitClient<IReqResApi>(new RefitSettings
-                {
-                    ContentSerializer = new NewtonsoftJsonContentSerializer(
+            {
+                ContentSerializer = new NewtonsoftJsonContentSerializer(
                         new JsonSerializerSettings
                         {
                             ContractResolver =
@@ -44,7 +44,7 @@ namespace WebApp.Extensions
                                     NamingStrategy = new SnakeCaseNamingStrategy()
                                 }
                         })
-                })
+            })
                 .ConfigureHttpClient((svc, client) =>
                 {
                     client.BaseAddress = svc.GetService<IOptions<ReqResApiOptions>>()?.Value.BaseAddress;

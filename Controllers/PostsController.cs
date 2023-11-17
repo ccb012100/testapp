@@ -16,7 +16,7 @@ namespace WebApp.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Post>> Get(int id)
         {
-            Post post = await Mediator.Send(new PostRequest {Id = id});
+            Post post = await Mediator.Send(new PostRequest { Id = id });
 
             return Ok(post);
         }
