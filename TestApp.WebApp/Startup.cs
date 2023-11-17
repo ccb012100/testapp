@@ -9,9 +9,10 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using WebApp;
 using WebApp.Extensions;
 
-namespace WebApp
+namespace TestApp.WebApp
 {
     public class Startup
     {
@@ -74,10 +75,10 @@ namespace WebApp
             appLifetime.ApplicationStopped.Register(() => OnStopped(logger));
         }
 
-        private void OnStarted(ILogger logger) => logger.LogInformation($"{GetType().Namespace} Started");
+        private void OnStarted(ILogger logger) => logger.LogInformation("{Namespace} Started", GetType().Namespace);
 
-        private void OnStopping(ILogger logger) => logger.LogInformation($"{GetType().Namespace} Stopping");
+        private void OnStopping(ILogger logger) => logger.LogInformation("{Namespace} Stopping", GetType().Namespace);
 
-        private void OnStopped(ILogger logger) => logger.LogInformation($"{GetType().Namespace} Stopped");
+        private void OnStopped(ILogger logger) => logger.LogInformation("{Namespace} Stopped", GetType().Namespace);
     }
 }
