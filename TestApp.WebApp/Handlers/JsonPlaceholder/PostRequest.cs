@@ -1,10 +1,9 @@
 using MediatR;
-using WebApp.Models.JsonPlaceholder;
+using TestApp.WebApp.Models.JsonPlaceholder;
 
-namespace WebApp.Handlers.JsonPlaceholder
+namespace TestApp.WebApp.Handlers.JsonPlaceholder;
+
+public record PostRequest : IRequest<Post>
 {
-    public record PostRequest : IRequest<Post>
-    {
-        public int Id { get; init; }
-    }
+    public int Id { get; init; }
 }

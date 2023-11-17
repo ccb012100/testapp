@@ -1,10 +1,9 @@
 // ReSharper disable UnusedMember.Global
 
-namespace WebApp.Models.ReqRes
+namespace TestApp.WebApp.Models.ReqRes;
+
+// ReSharper disable once ClassNeverInstantiated.Global
+public record SingleItemResponse<T>
 {
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public record SingleItemResponse<T>
-    {
-        public T Data { get; init; }
-    }
+    public T Data { get; init; }
 }

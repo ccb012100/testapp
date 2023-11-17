@@ -1,15 +1,14 @@
 using MediatR;
-using WebApp.Models.ReqRes;
+using TestApp.WebApp.Models.ReqRes;
 
-namespace WebApp.Handlers.ReqRes
+namespace TestApp.WebApp.Handlers.ReqRes;
+
+public record UserCollectionRequest : IRequest<CollectionResponse<User>>
 {
-    public record UserCollectionRequest : IRequest<CollectionResponse<User>>
+    public UserCollectionRequest(int page)
     {
-        public UserCollectionRequest(int page)
-        {
-            Page = page;
-        }
-
-        public int Page { get; }
+        Page = page;
     }
+
+    public int Page { get; }
 }

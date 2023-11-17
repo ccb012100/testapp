@@ -1,17 +1,16 @@
 using MediatR;
-using WebApp.Models.ReqRes;
+using TestApp.WebApp.Models.ReqRes;
 
-namespace WebApp.Handlers.ReqRes
+namespace TestApp.WebApp.Handlers.ReqRes;
+
+// ReSharper disable once ClassNeverInstantiated.Global
+public record UserRequest : IRequest<SingleItemResponse<User>>
 {
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public record UserRequest : IRequest<SingleItemResponse<User>>
+    public UserRequest(int id)
     {
-        public UserRequest(int id)
-        {
-            Id = id;
-        }
-
-        // ReSharper disable once UnusedAutoPropertyAccessor.Global
-        public int Id { get; }
+        Id = id;
     }
+
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
+    public int Id { get; }
 }

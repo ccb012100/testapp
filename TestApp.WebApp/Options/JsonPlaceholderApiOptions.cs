@@ -2,13 +2,12 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
-namespace WebApp.Options
-{
-    public class JsonPlaceholderApiOptions
-    {
-        public const string JsonPlaceholderApi = "JsonPlaceholderApi";
+namespace TestApp.WebApp.Options;
 
-        [Required]
-        public Uri BaseAddress { get; init; }
-    }
+public class JsonPlaceholderApiOptions
+{
+    public const string JsonPlaceholderApi = "JsonPlaceholderApi";
+
+    [Required]
+    public Uri BaseAddress { get; init; }
 }

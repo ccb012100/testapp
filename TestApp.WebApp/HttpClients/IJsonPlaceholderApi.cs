@@ -1,16 +1,15 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Refit;
-using WebApp.Models.JsonPlaceholder;
+using TestApp.WebApp.Models.JsonPlaceholder;
 
-namespace WebApp.HttpClients
+namespace TestApp.WebApp.HttpClients;
+
+public interface IJsonPlaceholderApi
 {
-    public interface IJsonPlaceholderApi
-    {
-        [Get("/posts")]
-        Task<IEnumerable<Post>> GetPosts();
+    [Get("/posts")]
+    Task<IEnumerable<Post>> GetPosts();
 
-        [Get("/posts/{id}")]
-        Task<Post> GetPost(int id);
-    }
+    [Get("/posts/{id}")]
+    Task<Post> GetPost(int id);
 }

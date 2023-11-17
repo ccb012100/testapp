@@ -1,15 +1,14 @@
 using System.Threading.Tasks;
 using Refit;
-using WebApp.Models.ReqRes;
+using TestApp.WebApp.Models.ReqRes;
 
-namespace WebApp.HttpClients
+namespace TestApp.WebApp.HttpClients;
+
+public interface IReqResApi
 {
-    public interface IReqResApi
-    {
-        [Get("/users/{id}")]
-        Task<SingleItemResponse<User>> GetUser(int id);
+    [Get("/users/{id}")]
+    Task<SingleItemResponse<User>> GetUser(int id);
 
-        [Get("/users")]
-        Task<CollectionResponse<User>> GetUsers(int page);
-    }
+    [Get("/users")]
+    Task<CollectionResponse<User>> GetUsers(int page);
 }

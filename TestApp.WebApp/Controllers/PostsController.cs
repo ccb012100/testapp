@@ -2,31 +2,30 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WebApp.Handlers.JsonPlaceholder;
-using WebApp.Models.JsonPlaceholder;
+using TestApp.WebApp.Handlers.JsonPlaceholder;
+using TestApp.WebApp.Models.JsonPlaceholder;
 
-namespace WebApp.Controllers
+namespace TestApp.WebApp.Controllers;
+
+public class PostsController : BaseController
 {
-    public class PostsController : BaseController
+    public PostsController(IMediator mediator) : base(mediator)
     {
-        public PostsController(IMediator mediator) : base(mediator)
-        {
-        }
+    }
 
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<Post>> Get(int id)
-        {
-            Post post = await Mediator.Send(new PostRequest { Id = id });
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<Post>> Get(int id)
+    {
+        Post post = await Mediator.Send(new PostRequest { Id = id });
 
-            return Ok(post);
-        }
+        return Ok(post);
+    }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Post>>> Get()
-        {
-            IEnumerable<Post> posts = await Mediator.Send(new PostCollectionRequest());
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Post>>> Get()
+    {
+        IEnumerable<Post> posts = await Mediator.Send(new PostCollectionRequest());
 
-            return Ok(posts);
-        }
+        return Ok(posts);
     }
 }
