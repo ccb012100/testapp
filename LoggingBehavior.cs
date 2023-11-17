@@ -16,12 +16,11 @@ namespace WebApp
             _logger = logger;
         }
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
-            RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            _logger.LogDebug($"REQUEST:{Environment.NewLine}{request.ToPrettyPrintJson()}");
+            _logger.LogDebug("REQUEST: {Request}", request.ToPrettyPrintJson());
             TResponse response = await next();
-            _logger.LogDebug($"RESPONSE:{Environment.NewLine}{response.ToPrettyPrintJson()}");
+            _logger.LogDebug("RESPONSE: {Response}", response.ToPrettyPrintJson());
 
             return response;
         }

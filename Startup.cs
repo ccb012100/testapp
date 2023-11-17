@@ -30,10 +30,10 @@ namespace WebApp
         {
             services
                 .AddAppSettingsOptions(Configuration)
-                .AddMediatR(Assembly.GetExecutingAssembly())
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Startup>())
                 .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
                 .AddHttpClients()
-                .AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApp", Version = "v1"}); })
+                .AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp", Version = "v1" }); })
                 .AddControllers();
         }
 
