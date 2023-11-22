@@ -1,0 +1,14 @@
+.idea/
+
+.DS_Store
+
+**/bin
+**/obj
+**/out
+
+**/Logs
+
+**/.vscode
+**/.vs
+
+/Folder.DotSettings.user
