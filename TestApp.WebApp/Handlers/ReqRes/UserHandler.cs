@@ -21,7 +21,7 @@ public class UserHandler : IRequestHandler<UserRequest, SingleItemResponse<User>
 
     public async Task<SingleItemResponse<User>> Handle(UserRequest request, CancellationToken cancellationToken)
     {
-        SingleItemResponse<User> response = await _api.GetUser(request.Id);
+        SingleItemResponse<User> response = await _api.GetUser(request.Id).ConfigureAwait(false);
         return response;
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -19,7 +18,7 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         _logger.LogDebug("REQUEST: {Request}", request.ToPrettyPrintJson());
-        TResponse response = await next();
+        TResponse response = await next().ConfigureAwait(false);
         _logger.LogDebug("RESPONSE: {Response}", response.ToPrettyPrintJson());
 
         return response;

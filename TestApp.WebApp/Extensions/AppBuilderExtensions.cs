@@ -22,7 +22,7 @@ public static class AppBuilderExtensions
                         async context =>
                         {
                             string configRoot = (config as IConfigurationRoot).GetDebugView();
-                            await context.Response.WriteAsync(configRoot);
+                            await context.Response.WriteAsync(configRoot).ConfigureAwait(false);
                         });
                 }
 

@@ -19,6 +19,6 @@ public class PostCollectionHandler : IRequestHandler<PostCollectionRequest, IEnu
 
     public async Task<IEnumerable<Post>> Handle(PostCollectionRequest request, CancellationToken cancellationToken)
     {
-        return await _api.GetPosts();
+        return await _api.GetPosts().ConfigureAwait(false);
     }
 }

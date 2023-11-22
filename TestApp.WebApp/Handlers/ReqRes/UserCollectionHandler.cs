@@ -22,7 +22,7 @@ public class UserCollectionHandler : IRequestHandler<UserCollectionRequest, Coll
     public async Task<CollectionResponse<User>> Handle(UserCollectionRequest request,
         CancellationToken cancellationToken)
     {
-        CollectionResponse<User> response = await _api.GetUsers(request.Page);
+        CollectionResponse<User> response = await _api.GetUsers(request.Page).ConfigureAwait(false);
         return response;
     }
 }

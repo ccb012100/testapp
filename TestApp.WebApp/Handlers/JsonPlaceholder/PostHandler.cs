@@ -18,6 +18,6 @@ public class PostHandler : IRequestHandler<PostRequest, Post>
 
     public async Task<Post> Handle(PostRequest request, CancellationToken cancellationToken)
     {
-        return await _api.GetPost(request.Id);
+        return await _api.GetPost(request.Id).ConfigureAwait(false);
     }
 }

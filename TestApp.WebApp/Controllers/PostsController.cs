@@ -16,7 +16,7 @@ public class PostsController : BaseController
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Post>> Get(int id)
     {
-        Post post = await Mediator.Send(new PostRequest { Id = id });
+        Post post = await Mediator.Send(new PostRequest { Id = id }).ConfigureAwait(false);
 
         return Ok(post);
     }
@@ -24,7 +24,7 @@ public class PostsController : BaseController
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Post>>> Get()
     {
-        IEnumerable<Post> posts = await Mediator.Send(new PostCollectionRequest());
+        IEnumerable<Post> posts = await Mediator.Send(new PostCollectionRequest()).ConfigureAwait(false);
 
         return Ok(posts);
     }
