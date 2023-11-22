@@ -1,36 +1,39 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <!-- Required meta tags for Bootstrap-->
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Bootswatch Darkly Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.1/dist/darkly/bootstrap.min.css" rel="stylesheet"/>
+<head>
+    <!-- Required meta tags for Bootstrap-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <!-- Vue.js -->
-        <!-- development version, includes helpful console warnings -->
-        <script src="https://unpkg.com/vue@next"></script>
+    <!-- Bootswatch Darkly Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.1/dist/darkly/bootstrap.min.css" rel="stylesheet" />
 
-        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
-        <title>WebApp home</title>
-    </head>
-    <body class="container">
+    <!-- Vue.js -->
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <title>WebApp home</title>
+</head>
+
+<body class="container">
     <div id="app">
         <pre>{{ message }}</pre>
     </div>
-    </body>
-    <script>
-        const RootComponent = {
-            data() {
-                return {
-                    message: "Hello, World! " + Date()
-                }
+</body>
+<script>
+    const RootComponent = {
+        data() {
+            return {
+                message: "Hello, World! " + Date()
             }
         }
-        const app = Vue.createApp(RootComponent)
-        const vm = app.mount('#app')
-    </script>
-    </html>
+    }
+    const app = Vue.createApp(RootComponent)
+    const vm = app.mount('#app')
+</script>
+
+</html>
