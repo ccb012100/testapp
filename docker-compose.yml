@@ -5,6 +5,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+;http://+
       - ASPNETCORE_HTTPS_PORT=8001
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.aspnet/https/webapp.pfx # password set in dotnet user-secrets
     ports:
       - "8000:80"
       - "8001:443"
