@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
+WORKDIR /source
 EXPOSE 80
 EXPOSE 443
 
@@ -11,7 +12,7 @@ RUN dotnet restore
 
 # copy everything else and build app
 COPY . ./
-WORKDIR /app/TestApp.WebApp
+WORKDIR /source/TestApp.WebApp
 RUN dotnet publish --configuration debug --no-restore --output /app
 
 # final stage/image
