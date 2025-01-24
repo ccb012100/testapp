@@ -32,6 +32,7 @@ public class Startup
             .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Startup>())
             .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
             .AddHttpClients()
+            .AddHttpLogging(_ => {})
             .AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp", Version = "v1" }); })
             .AddControllers();
     }
@@ -59,6 +60,7 @@ public class Startup
             .UseHttpsRedirection()
             .UseRouting()
             .UseAuthorization()
+            .UseHttpLogging()
             .UseStaticFiles(new StaticFileOptions
             {
                 // host Pages/* at ~/app/*
